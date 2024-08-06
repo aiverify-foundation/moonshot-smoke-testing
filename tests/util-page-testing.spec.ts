@@ -8,7 +8,7 @@ import { main_page_startup } from './common';
  * Test case for verifying the startup page elements.
  * It navigates to the startup page and checks for the visibility of various elements.
  *
- * @param {import('@playwright/test').Page} page - The Playwright page object.
+ * @param {import('@playwright/test').Page} page - The Playwright page objects.
  */
 test.use({
   viewport: {

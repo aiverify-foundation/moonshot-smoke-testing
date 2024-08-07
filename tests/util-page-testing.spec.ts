@@ -21,7 +21,7 @@ test('test_util_page_view_prompt-templates', async ({ page }) => {
   await main_page_startup(page);
   const submitButton = page.locator('#navContainer').getByRole('link').nth(4)
   await expect(submitButton).toBeVisible();
-  await submitButton.click();
+   await submitButton.click();
   // Assertion for redirecting to right page
   await expect(page.getByRole('heading', { name: 'moonshot utilities' })).toBeVisible();
   await page.getByRole('button', { name: 'View Prompt Templates' }).click();

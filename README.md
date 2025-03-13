@@ -97,8 +97,11 @@ A brief overview of the repository structure:
 ```
 moonshot-integration-testing/         # Integration test cases
 ├── tests/                   
-│   ├── test_cli.py                   # Smoke Test for the Moonshot CLI
-│   ├── smoke-test.spec.ts            # Smoke Test for the Moonshot UI
+│   ├── test_cli.py                   # Smoke Test for the Moonshot V0 CLI
+│   ├── smoke-test.spec.ts            # Smoke Test for the Moonshot V0 UI
+│   └──
+├── test-moonshot-v1/                   
+│   ├── test_cli.py                   # Smoke Test for the Moonshot V1 CLI
 │   └── 
 ├── .gitignore
 ├── README.md                # Project documentation

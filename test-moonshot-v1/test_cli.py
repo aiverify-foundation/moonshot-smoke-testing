@@ -15,10 +15,10 @@ def assert_run_benchmark_outcome(output_lines):
     assert "File written".replace(" ", "") in output_lines
     assert "successfully at:".replace(" ", "") in output_lines
     assert "data/results/my-benchm".replace(" ", "") in output_lines
-    # Todo : To remove when test run command is release
-    assert "successfully created with".replace(" ", "") in output_lines
-    # # Activate when test run command is release
-    # assert "have been completed. Successfully".replace(" ", "") in output_lines
+    # # Todo : To remove when test run command is release
+    # assert "successfully created with".replace(" ", "") in output_lines
+    # Activate when test run command is release
+    assert "have been completed. Successfully".replace(" ", "") in output_lines
 
 def assert_run_red_teaming_outcome(output_lines):
     output_lines = [line.replace(" ", "") for line in output_lines if line.strip()]
@@ -30,7 +30,7 @@ def assert_run_red_teaming_outcome(output_lines):
     # assert "run_id:".replace(" ", "") in output_lines
     # Activate when test run command is release
     assert "have been completed. Successfully".replace(" ", "") in output_lines
-
+@pytest.mark.skip(reason="This test is skipped for as command is removed")
 def test_cli_smoke_test():
     # Smoke Test for Benchmarking Test Command
     # Generate a random number between 0 and 999,999,999 (inclusive)
@@ -111,7 +111,7 @@ def test_cli_smoke_test():
     # Assert Results
     assert_run_red_teaming_outcome(output_lines)
     check_result_file_exists(MOON_V1_CLI_DIR + "/data/results/" + nameOfRunnerName + ".json")
-@pytest.mark.skip(reason="This test is skipped for now until test run command is release")
+
 def test_cli_smoke_test_new():
     # Smoke Test for Run Benchmarking Test Config Command
     # Generate a random number between 0 and 999,999,999 (inclusive)

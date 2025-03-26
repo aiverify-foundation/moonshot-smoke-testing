@@ -89,6 +89,112 @@ __*Make sure Moonshot is already Setup__
    ```bash
    npx playwright test
    ```
+## Running the UI Smoke Test
+
+To execute the integration tests:
+
+1. **Navigate to the Test Directory**:
+
+   ```bash
+   cd tests
+   ```
+2. **Set Up the Virtual Environment**:
+
+   It's recommended to use a virtual environment to manage dependencies:
+
+   ```bash
+   python -m venv venv
+   source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
+   ```
+
+3. **Install Node Dependencies**:
+
+   Install the required Node packages:
+
+   ```bash
+   npm install
+   ```
+4. **Setup Env File**:
+
+   Create a .env file:
+
+   ```bash
+   touch .env
+   ```
+
+      Open the .env file in a text editor and define your environment variables:
+   ```bash
+   # .env
+   AZURE_OPENAI_URI = 
+   AZURE_OPENAI_TOKEN = 
+   ADDITIONAL_PARAMETERS = '{      "timeout": 300, "max_attempts": 3,   "temperature": 0.5 }'
+   MOONSHOT_URL = localhost
+   MOONSHOT_PORT_NUMBER = 3000
+   CLI_DIR = ''# Path of Moonshot Library
+   ```
+5. **Run Tests**:
+
+   Use the following command to run all tests:
+
+   ```bash
+   npx playwright test
+   ```
+## Running Moonshot V1 CLI Smoke Tests
+__*Make sure Moonshot v1 is already Setup__
+
+To execute the integration tests:
+
+1. **Navigate to the Test Directory**:
+
+   ```bash
+   cd test-moonshot-v1
+   ```
+2. **Set Up the Virtual Environment**:
+
+   It's recommended to use a virtual environment to manage dependencies:
+
+   ```bash
+   python -m venv venv
+   source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
+   ```
+
+3. **Install Python Dependencies**:
+
+   Install the required Python packages:
+
+   ```bash
+   pip install -r requirements.txt
+   ```
+3. **Setup Env File**:
+
+   Create a .env file:
+
+   ```bash
+   touch .env
+   ```
+
+   Open the .env file in a text editor and define your environment variables:
+   ```bash
+   # .env
+   AWS_ACCESS_KEY_ID = ''
+   AWS_SECRET_ACCESS_KEY=''
+   OPENAI_TOKEN = ''
+   MOON_V1_CLI_DIR = ''# Path of Moonshot v1 repo
+   ```
+
+4. **Run Tests**:
+
+   Use the following command to run all tests:
+
+   ```bash
+   pytest
+   ```
+
+   For more detailed output:
+
+   ```bash
+   pytest -v
+   ```
 
 ## Directory Structure
 

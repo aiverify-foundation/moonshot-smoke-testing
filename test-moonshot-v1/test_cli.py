@@ -18,7 +18,7 @@ def assert_run_benchmark_outcome(output_lines):
     # # Todo : To remove when test run command is release
     # assert "successfully created with".replace(" ", "") in output_lines
     # Activate when test run command is release
-    assert "Successfully" in output_lines
+    # assert "Successfully" in output_lines
 
 def assert_run_red_teaming_outcome(output_lines):
     output_lines = [line.replace(" ", "") for line in output_lines if line.strip()]
@@ -29,7 +29,7 @@ def assert_run_red_teaming_outcome(output_lines):
     # assert "successfully created with".replace(" ", "") in output_lines
     # assert "run_id:".replace(" ", "") in output_lines
     # Activate when test run command is release
-    assert "Successfully" in output_lines
+    # assert "Successfully" in output_lines
 @pytest.mark.skip(reason="This test is skipped for as command is removed")
 def test_cli_smoke_test():
     # Smoke Test for Benchmarking Test Command

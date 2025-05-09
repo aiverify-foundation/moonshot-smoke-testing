@@ -71,7 +71,7 @@ google-pasta==0.2.0
 googleapis-common-protos==1.65.0
 grpcio==1.66.2
 grpcio-status==1.62.3
-h11==0.14.0
+h11==0.16.0
 h2o-authn==2.1.0
 h2ogpte==1.6.18.post1
 h5py==3.12.1

@@ -30,7 +30,7 @@ def test_cli_benchmark():
         raise RuntimeError("Failed to create stdin for the subprocess")
 
     # Update Endpoints
-    command = 'update_endpoint azure-openai-gpt4o "[(\'name\', \'Azure OpenAI GPT4o\'), (\'uri\', \''+str(AZURE_OPENAI_URI)+'\'), (\'token\', \''+str(AZURE_OPENAI_TOKEN)+'\'), (\'params\', {\'timeout\': 300, \'allow_retries\': True, \'num_of_retries\': 3, \'temperature\': 0.5, \'model\': \'gpt-4o\'})]"\n'
+    command = 'update_endpoint azure-openai-gpt4o "[(\'name\', \'Azure OpenAI GPT4o\'), (\'uri\', \''+str(AZURE_OPENAI_URI)+'\'), (\'token\', \''+str(AZURE_OPENAI_TOKEN)+'\'), (\'params\', {\'timeout\': 300,\'max_attempts\': 3, \'temperature\': 0.5, \'model\': \'gpt-4o\'})]"\n'
     print('Command:', command)
     # Example command to send to the process
     process.stdin.write(command)

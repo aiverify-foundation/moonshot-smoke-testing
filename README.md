@@ -83,12 +83,6 @@ __*Make sure Moonshot is already Setup__
    ```bash
    pytest
    ```
-
-   Use the following command to run UI smoke tests:
-
-   ```bash
-   npx playwright test
-   ```
 ## Running the UI Smoke Test
 
 To execute the integration tests:
@@ -195,6 +189,39 @@ To execute the integration tests:
    ```bash
    pytest -v
    ```
+## Running Moonshot V1 Process Check Smoke Tests
+
+To execute the integration tests:
+
+1. **Navigate to the Test Directory**:
+
+   ```bash
+   cd test-moonshot-v1
+   ```
+2. **Set Up the Virtual Environment**:
+
+   It's recommended to use a virtual environment to manage dependencies:
+
+   ```bash
+   python -m venv venv
+   source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
+   ```
+
+3. **Install Node Dependencies**:
+
+   Install the required Node packages:
+
+   ```bash
+   npm install
+   ```
+4. **Run Tests**:
+
+   Use the following command to run all tests:
+
+   ```bash
+   npx playwright test
+   ```  
+
 
 ## Directory Structure
 
@@ -208,6 +235,7 @@ moonshot-integration-testing/         # Integration test cases
 │   └──
 ├── test-moonshot-v1/                   
 │   ├── test_cli.py                   # Smoke Test for the Moonshot v1 CLI
+│   ├── test_process_check.spec.ts    # Smoke Test for the Moonshot v1 Process Check
 │   ├── util.py                       # Common Utils Functions to support automation on Data Preparation and Assertion
 │   └── 
 ├── .gitignore

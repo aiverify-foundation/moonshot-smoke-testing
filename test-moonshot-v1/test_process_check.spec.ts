@@ -476,7 +476,7 @@ test('test_process_checklist', async ({page}) => {
     // Try to upload result files
 
     // Path: one level up from current directory, then into test-data
-    const test_result_json_path = path.resolve(__dirname, '..', 'test-data', 'ms-v1-test-result.json');
+    const test_result_json_path = path.resolve(__dirname, 'test-data', 'ms-v1-test-result.json');
     // Locate the file input element.
     const fileInput = page.locator('[data-testid="stFileUploaderDropzone"] input[type="file"]');
 

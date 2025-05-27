@@ -74,6 +74,7 @@ test('Moonshot UI Smoke Test', async ({page}) => {
     await page.getByRole('button', {name: 'Start New Run'}).click();
     await page.getByLabel('Select ' + ENDPOINT_NAME).check();
     await page.getByLabel('Next View').click();
+    await page.getByRole('button', { name: 'Capability' }).click();
     await page.getByLabel('Select singapore-context').check();
     await page.getByLabel('Next View').click();
     await page.getByPlaceholder('Give this session a unique').click();

@@ -495,7 +495,7 @@ test('test_process_checklist', async ({page}) => {
     boxStep4 = page.getByText('5', {exact: true});
     await expect(boxStep4).toHaveClass(/active/);
 
-    await expect(page.getByRole('heading', {name: 'Generate Your Technical Report'})).toBeVisible();
+    await expect(page.getByRole('heading', {name: 'Generate Your Report'})).toBeVisible();
 
     //Attempt to edit Workspace information
     await page.locator('[data-testid="stCustomComponentV1"]').contentFrame().getByRole('button', {name: 'edit'}).click();
@@ -512,17 +512,17 @@ test('test_process_checklist', async ({page}) => {
     await expect(page.locator('[data-testid="stCustomComponentV1"]').contentFrame().getByText('application_description_edit')).toBeVisible();
 
     // Download button hidden before clicking generate report button
-    await expect(page.getByTestId('stDownloadButton').getByTestId('stBaseButton-secondary')).toBeHidden();
+    await expect(page.getByTestId('stDownloadButton').getByTestId('stBaseButton-primary')).toBeHidden();
 
     // Click Preview Report Button
-    await page.getByRole('button', {name: 'Preview Report'}).click();
+    await page.getByRole('button', {name: 'Generate Report'}).click();
 
     //Verify Download PDF button visible to user for download
-    await expect(page.getByTestId('stDownloadButton').getByTestId('stBaseButton-secondary')).toBeVisible({ timeout: 10000 });
+    await expect(page.getByTestId('stDownloadButton').getByTestId('stBaseButton-primary')).toBeVisible({ timeout: 10000 });
 
     const [download] = await Promise.all([
         page.waitForEvent('download'),  // Wait for the download event
-        page.getByTestId('stDownloadButton').getByTestId('stBaseButton-secondary').click(),
+        page.getByTestId('stDownloadButton').getByTestId('stBaseButton-primary').click(),
     ]);
 
     // Get the suggested filename and save the file to the current directory

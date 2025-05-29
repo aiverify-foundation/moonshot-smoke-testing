@@ -425,7 +425,7 @@ test('test_process_checklist', async ({page}) => {
     test.setTimeout(1200000);
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     console.log(workspace_name)
-    await page.goto('http://127.0.0.1:8501');
+    await page.goto('http://localhost:8501');
     await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible();
 
     await page.getByTestId('stBaseButton-primary').click();

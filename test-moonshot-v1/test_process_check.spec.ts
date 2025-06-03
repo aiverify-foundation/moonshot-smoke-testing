@@ -425,8 +425,8 @@ test('test_process_checklist', async ({page}) => {
     test.setTimeout(1200000);
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     console.log(workspace_name)
-    await page.goto('http://0.0.0.0:8501');
-    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible();
+    await page.goto('http://localhost:8501');
+    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible({timeout: 90000});
 
     await page.getByTestId('stBaseButton-primary').click();
     await expect(page.getByRole('heading', {name: 'AI Verify Testing Framework'})).toBeVisible();

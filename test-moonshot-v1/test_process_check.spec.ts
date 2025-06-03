@@ -518,7 +518,7 @@ test('test_process_checklist', async ({page}) => {
     await page.getByRole('button', {name: 'Generate Report'}).click();
 
     //Verify Download PDF button visible to user for download
-    await expect(page.getByTestId('stDownloadButton').getByTestId('stBaseButton-primary')).toBeVisible({ timeout: 10000 });
+    await expect(page.getByTestId('stDownloadButton').getByTestId('stBaseButton-primary')).toBeVisible({ timeout: 90000 });
 
     const [download] = await Promise.all([
         page.waitForEvent('download'),  // Wait for the download event

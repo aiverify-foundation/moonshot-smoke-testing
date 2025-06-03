@@ -47,7 +47,7 @@ export default defineConfig({
       // args: ["--start-maximized"],
       slowMo: 300
     },
-
+    actionTimeout: 60000, // Timeout for each action in milliseconds (e.g. 1 min)
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
   },

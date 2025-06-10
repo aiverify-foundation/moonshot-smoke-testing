@@ -450,7 +450,12 @@ test('test_process_checklist', async ({page}) => {
     await page.getByRole('button', {name: 'Next →'}).click();
     // Check Steps UI contains 'active'
     await expect(boxStep3).toHaveClass(/active/);
-    // await expect(page.getByText('Provide Workspace Details')).toBeVisible();
+    await page.waitForLoadState('networkidle');
+    await page.waitForTimeout(1000); // buffer for UI stability
+    // Ensure modal/dialog is loaded
+    await page.waitForSelector('div[role="dialog"][aria-modal="true"]', {timeout: 30000});
+    // Check visibility with increased timeout
+    await expect(page.getByText('Provide Workspace Details')).toBeVisible({timeout: 30000});
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
     await page.getByRole('textbox', {name: 'Application Name'}).click();

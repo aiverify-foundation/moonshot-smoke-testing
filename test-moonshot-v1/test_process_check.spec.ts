@@ -1,4 +1,4 @@
-import {test, expect} from '@playwright/test';
+import {test, expect, chromium} from '@playwright/test';
 import * as fs from 'fs';
 import * as path from 'path';
 
@@ -421,8 +421,15 @@ async function fillInProcessChecklist(page) {
     await expect(boxStep4).toHaveClass(/active/);
 }
 
-test('test_process_checklist', async ({page}) => {
-    test.setTimeout(1200000);
+test('test_process_checklist', async ({}) => {
+    test.setTimeout(1200000)
+    // Random delay between 60,000ms (1 min) and 120,000ms (2 min)
+    const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
+    console.log(`⏳ Waiting for ${Math.floor(delay / 1000)} seconds`);
+    const browser = await chromium.launch();
+    const context = await browser.newContext();  // fresh context
+    const page = await context.newPage();
+    await page.waitForTimeout(delay)
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     console.log(workspace_name)
     await page.goto('http://localhost:8501/test =' + Math.floor(Math.random() * 1000000000));
@@ -433,7 +440,7 @@ test('test_process_checklist', async ({page}) => {
 
     const boxStep1 = page.getByText('1', {exact: true});
     await expect(boxStep1).toHaveClass(/active/);
-    let boxStep2 = page.getByText('2', { exact: true })
+    let boxStep2 = page.getByText('2', {exact: true})
 
     //Checkpoint - Click Next button reach to Getting Started Page
     // Check Steps UI contains 'inactive'
@@ -518,7 +525,7 @@ test('test_process_checklist', async ({page}) => {
     await page.getByRole('button', {name: 'Generate Report'}).click();
 
     //Verify Download PDF button visible to user for download
-    await expect(page.getByTestId('stDownloadButton').getByTestId('stBaseButton-primary')).toBeVisible({ timeout: 90000 });
+    await expect(page.getByTestId('stDownloadButton').getByTestId('stBaseButton-primary')).toBeVisible({timeout: 90000});
 
     const [download] = await Promise.all([
         page.waitForEvent('download'),  // Wait for the download event
@@ -528,6 +535,5 @@ test('test_process_checklist', async ({page}) => {
     // Get the suggested filename and save the file to the current directory
     const filename = download.suggestedFilename();
     expect(filename == "summary_report.pdf")
-    // ✅ Clean close the page
-    await page.close(); // This disconnects the tab
+    await browser.close(); // clean up
 });

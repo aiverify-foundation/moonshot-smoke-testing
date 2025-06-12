@@ -421,14 +421,18 @@ async function fillInProcessChecklist(page) {
     await expect(boxStep4).toHaveClass(/active/);
 }
 
-test('test_process_checklist',async ({page})  => {
+test('test_process_checklist',async ()  => {
     test.setTimeout(1200000)
     // Random delay between 60,000ms (1 min) and 120,000ms (2 min)
     // const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
     // console.log(`⏳ Waiting for ${Math.floor(delay / 1000)} seconds`);
     // const browser = await chromium.launch({ headless: true ,slowMo: 300});
+    const browserContext = await chromium.launchPersistentContext('./user-data-dir', {
+    headless: true,
+    slowMo: 300,
+  });
     // const context = await browser.newContext();  // fresh context
-    // const page = await context.newPage();
+    const page = await browserContext.newPage();
     // await page.waitForTimeout(delay)
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     console.log(workspace_name)
@@ -535,5 +539,5 @@ test('test_process_checklist',async ({page})  => {
     // Get the suggested filename and save the file to the current directory
     const filename = download.suggestedFilename();
     expect(filename == "summary_report.pdf")
-    await page.close(); // clean up
+    await browserContext.close(); // clean up
 });

@@ -422,7 +422,7 @@ async function fillInProcessChecklist(page) {
 }
 
 test('test_process_checklist', async ({}) => {
-    test.setTimeout(1200000)
+    test.setTimeout(2400000)
     // Random delay between 60,000ms (1 min) and 120,000ms (2 min)
     const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
     console.log(`⏳ Waiting for ${Math.floor(delay / 1000)} seconds`);

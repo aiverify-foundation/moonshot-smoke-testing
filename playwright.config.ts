@@ -52,6 +52,11 @@ export default defineConfig({
     actionTimeout: 60000, // Timeout for each action in milliseconds (e.g. 1 min)
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
+    // Each test gets a fresh context by default
+    contextOptions: {
+      // Optional: disable cache for cleaner sessions
+      bypassCSP: true,
+    },
   },
 
   /* Configure projects for major browsers */

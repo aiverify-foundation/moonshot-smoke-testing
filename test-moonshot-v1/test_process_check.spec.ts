@@ -421,15 +421,15 @@ async function fillInProcessChecklist(page) {
     await expect(boxStep4).toHaveClass(/active/);
 }
 
-test('test_process_checklist', async ({page}) => {
+test('test_process_checklist', async ({}) => {
     test.setTimeout(1200000)
     // Random delay between 60,000ms (1 min) and 120,000ms (2 min)
     const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
     console.log(`⏳ Waiting for ${Math.floor(delay / 1000)} seconds`);
-    // const browser = await chromium.launch({headless:true, slowMo:300});
-    // const context = await browser.newContext();  // fresh context
-    // const page = await context.newPage();
-    // await page.waitForTimeout(delay)
+    const browser = await chromium.launch({headless:true, slowMo:300});
+    const context = await browser.newContext();  // fresh context
+    const page = await context.newPage();
+    await page.waitForTimeout(delay)
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     console.log(workspace_name)
     await page.goto('http://localhost:8501/test =' + Math.floor(Math.random() * 1000000000));

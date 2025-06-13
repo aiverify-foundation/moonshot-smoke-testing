@@ -427,14 +427,13 @@ test('test_process_checklist', async ({}) => {
     const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
     console.log(`⏳ Waiting for ${Math.floor(delay / 1000)} seconds`);
     //const browser = await chromium.launch({headless:true});
-    const browser = await chromium.launch({
-      headless: false,
-      args: [
-        '--disable-web-security',
-        '--disable-features=IsolateOrigins,site-per-process',
-        '--user-data-dir=/tmp/playwright-user-data' // Required when disabling web security
-      ]
-    });
+    const context = await chromium.launchPersistentContext(userDataDir, {
+    headless: false,
+    args: [
+      '--disable-web-security',
+      '--disable-features=IsolateOrigins,site-per-process'
+    ]
+  });
 
     const context = await browser.newContext();  // fresh context
     const page = await context.newPage();

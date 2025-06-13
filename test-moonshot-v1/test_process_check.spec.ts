@@ -534,6 +534,6 @@ test('test_process_checklist', async ({page}) => {
 
     // Get the suggested filename and save the file to the current directory
     const filename = download.suggestedFilename();
-    await expect(filename == "summary_report.pdf")
+    expect(filename == "summary_report.pdf")
     await page.close(); // clean up
 });

@@ -2,6 +2,8 @@ import {test, expect, chromium} from '@playwright/test';
 import * as fs from 'fs';
 import * as path from 'path';
 
+const userDataDir = './my-user-data-dir'; // ✅ Define the varia
+
 async function fillInProcessChecklist(page) {
     let boxStep4 = page.getByText('4', {exact: true});
     // Fill Transparency

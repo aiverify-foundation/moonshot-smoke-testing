@@ -435,7 +435,7 @@ test('test_process_checklist', async ({}) => {
     ]
   });
 
-    const context = await browser.newContext();  // fresh context
+    //const context = await browser.newContext();  // fresh context
     const page = await context.newPage();
     // await page.waitForTimeout(delay)
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);

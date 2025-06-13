@@ -2,8 +2,6 @@ import {test, expect, chromium} from '@playwright/test';
 import * as fs from 'fs';
 import * as path from 'path';
 
-const userDataDir = './my-user-data-dir'; // ✅ Define the varia
-
 async function fillInProcessChecklist(page) {
     let boxStep4 = page.getByText('4', {exact: true});
     // Fill Transparency
@@ -428,16 +426,9 @@ test('test_process_checklist', async ({}) => {
     // Random delay between 60,000ms (1 min) and 120,000ms (2 min)
     const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
     console.log(`⏳ Waiting for ${Math.floor(delay / 1000)} seconds`);
-    //const browser = await chromium.launch({headless:true});
-    const context = await chromium.launchPersistentContext(userDataDir, {
-    headless: false,
-    args: [
-      '--disable-web-security',
-      '--disable-features=IsolateOrigins,site-per-process'
-    ]
-  });
-
-    //const context = await browser.newContext();  // fresh context
+    const browser = await chromium.launch({headless:true});
+    
+    const context = await browser.newContext();  // fresh context
     const page = await context.newPage();
     // await page.waitForTimeout(delay)
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);

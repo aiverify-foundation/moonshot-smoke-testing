@@ -427,13 +427,13 @@ test('test_process_checklist', async ({}) => {
     const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
     console.log(`⏳ Waiting for ${Math.floor(delay / 1000)} seconds`);
     const browser = await chromium.launch({headless:true});
-    
+    await page.goto('http://localhost:8501/test=' + Math.floor(Math.random() * 1000000000));
     const context = await browser.newContext();  // fresh context
     const page = await context.newPage();
     // await page.waitForTimeout(delay)
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     console.log(workspace_name)
-    await page.goto('http://localhost:8501')
+await page.goto('http://localhost:8501/test=' + Math.floor(Math.random() * 1000000000));
     await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible({timeout: 90000});
 
     await page.getByTestId('stBaseButton-primary').click();

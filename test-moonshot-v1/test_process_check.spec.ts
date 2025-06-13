@@ -426,7 +426,7 @@ test('test_process_checklist', async ({}) => {
     // Random delay between 60,000ms (1 min) and 120,000ms (2 min)
     const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
     console.log(`⏳ Waiting for ${Math.floor(delay / 1000)} seconds`);
-    const browser = await chromium.launch({headless:true, slowMo:200});
+    const browser = await chromium.launch({headless:true, slowMo:1000});
     const context = await browser.newContext();  // fresh context
     const page = await context.newPage();
     // await page.waitForTimeout(delay)

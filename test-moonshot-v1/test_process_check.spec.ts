@@ -432,7 +432,7 @@ test('test_process_checklist', async ({}) => {
     // await page.waitForTimeout(delay)
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     console.log(workspace_name)
-    await page.goto('http://localhost:8501);
+    await page.goto('http://localhost:8501', { waitUntil: 'domcontentloaded', timeout: 60_000 });
     await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible({timeout: 90000});
 
     await page.getByTestId('stBaseButton-primary').click();

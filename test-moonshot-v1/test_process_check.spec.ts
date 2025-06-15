@@ -458,86 +458,85 @@ test('test_process_checklist', async ({page}) => {
     // Check Steps UI contains 'active'
     await expect(boxStep3).toHaveClass(/active/);
     await page.waitForLoadState('networkidle');
-    await page.waitForTimeout(10000); // buffer for UI stability
+    await page.waitForTimeout(1000); // buffer for UI stability
     const dialog = page.locator('div[role="dialog"][aria-modal="true"]').filter({hasText: 'Provide Workspace Details'});
-    await page.waitForSelector('div[role="dialog"][aria-modal="true"]', { timeout: 5000 });
     await expect(dialog).toBeVisible({timeout: 360_000});
-    // await page.getByRole('textbox', {name: 'Company Name'}).click();
-    // await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
-    // await page.getByRole('textbox', {name: 'Application Name'}).click();
-    // await page.getByRole('textbox', {name: 'Application Name'}).fill('application_name');
-    // await page.getByRole('textbox', {name: 'Application Description'}).click();
-    // await page.getByRole('textbox', {name: 'Application Description'}).fill('application_description');
-    // await page.getByRole('textbox', {name: 'Workspace Name'}).click();
-    // await page.getByRole('textbox', {name: 'Workspace Name'}).fill(workspace_name);
-    // await page.getByTestId('stBaseButton-primary').click();
-    //
-    // let boxStep4 = page.getByText('4', {exact: true});
-    // // Check Steps UI contains 'inactive'
-    // await expect(boxStep4).toHaveClass(/inactive/);
-    //
-    // await expect(page.locator('iframe[title="backend\\.actions_components\\.actions_component\\.actions_component"]').contentFrame().getByText('application_name')).toBeVisible();
-    // await expect(page.locator('iframe[title="backend\\.actions_components\\.actions_component\\.actions_component"]').contentFrame().getByText('application_description')).toBeVisible();
-    // await page.locator('iframe[title="backend\\.actions_components\\.actions_component\\.actions_component"]').contentFrame().getByText(workspace_name).click();
-    // await expect(page.getByTestId('stExpander').getByText('Instructions')).toBeVisible();
-    //
-    // await fillInProcessChecklist(page)
-    //
-    // await expect(page.getByRole('heading', {name: 'Upload Technical Test Results'})).toBeVisible();
-    // // Try to upload result files
-    //
-    // // Path: one level up from current directory, then into test-data
-    // const test_result_json_path = path.resolve(__dirname, 'test-data', 'ms-v1-test-result.json');
-    // // Locate the file input element.
-    // const fileInput = page.locator('[data-testid="stFileUploaderDropzone"] input[type="file"]');
-    //
-    // // Ensure the file input exists and then perform the file upload.
-    // await expect(fileInput).toHaveCount(1);
-    // await fileInput.setInputFiles(test_result_json_path);
-    //
-    // // Verify the file was uploaded.
-    // await expect(page.getByText('File uploaded successfully')).toBeVisible();
-    // await expect(page.getByTestId('stFileUploaderFileName')).toContainText('ms-v1-test-result.json');
-    //
-    // // Click next page button
-    // await page.getByRole('button', {name: 'Next →'}).click();
-    //
-    // // Check Steps UI contains 'active'
-    // boxStep4 = page.getByText('5', {exact: true});
-    // await expect(boxStep4).toHaveClass(/active/);
-    //
-    // await expect(page.getByRole('heading', {name: 'Generate Your Report'})).toBeVisible();
-    //
-    // //Attempt to edit Workspace information
-    // await page.locator('[data-testid="stCustomComponentV1"]').contentFrame().getByRole('button', {name: 'edit'}).click();
-    // await page.getByRole('textbox', {name: 'Company Name'}).click();
-    // await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name_edit');
-    // await page.getByRole('textbox', {name: 'Application Name'}).click();
-    // await page.getByRole('textbox', {name: 'Application Name'}).fill('application_name_edit');
-    // await page.getByRole('textbox', {name: 'Application Description'}).click();
-    // await page.getByRole('textbox', {name: 'Application Description'}).fill('application_description_edit');
-    // await page.getByTestId('stBaseButton-primaryFormSubmit').click();
-    // // Verify changes is updated
-    // await expect(page.locator('[data-testid="stCustomComponentV1"]').contentFrame().getByText('company_name_edit')).toBeVisible();
-    // await expect(page.locator('[data-testid="stCustomComponentV1"]').contentFrame().getByText('application_name_edit')).toBeVisible();
-    // await expect(page.locator('[data-testid="stCustomComponentV1"]').contentFrame().getByText('application_description_edit')).toBeVisible();
-    //
-    // // Download button hidden before clicking generate report button
-    // await expect(page.getByTestId('stDownloadButton').getByTestId('stBaseButton-primary')).toBeHidden();
-    //
-    // // Click Generate Report Button
-    // await page.getByRole('button', {name: 'Generate Report'}).click();
-    //
-    // //Verify Download PDF button visible to user for download
-    // await expect(page.getByTestId('stDownloadButton').getByTestId('stBaseButton-primary')).toBeVisible({timeout: 90000});
-    //
-    // const [download] = await Promise.all([
-    //     page.waitForEvent('download'),  // Wait for the download event
-    //     page.getByTestId('stDownloadButton').getByTestId('stBaseButton-primary').click(),
-    // ]);
-    //
-    // // Get the suggested filename and save the file to the current directory
-    // const filename = download.suggestedFilename();
-    // expect(filename == "summary_report.pdf")
+    await page.getByRole('textbox', {name: 'Company Name'}).click();
+    await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
+    await page.getByRole('textbox', {name: 'Application Name'}).click();
+    await page.getByRole('textbox', {name: 'Application Name'}).fill('application_name');
+    await page.getByRole('textbox', {name: 'Application Description'}).click();
+    await page.getByRole('textbox', {name: 'Application Description'}).fill('application_description');
+    await page.getByRole('textbox', {name: 'Workspace Name'}).click();
+    await page.getByRole('textbox', {name: 'Workspace Name'}).fill(workspace_name);
+    await page.getByTestId('stBaseButton-primary').click();
+
+    let boxStep4 = page.getByText('4', {exact: true});
+    // Check Steps UI contains 'inactive'
+    await expect(boxStep4).toHaveClass(/inactive/);
+
+    await expect(page.locator('iframe[title="backend\\.actions_components\\.actions_component\\.actions_component"]').contentFrame().getByText('application_name')).toBeVisible();
+    await expect(page.locator('iframe[title="backend\\.actions_components\\.actions_component\\.actions_component"]').contentFrame().getByText('application_description')).toBeVisible();
+    await page.locator('iframe[title="backend\\.actions_components\\.actions_component\\.actions_component"]').contentFrame().getByText(workspace_name).click();
+    await expect(page.getByTestId('stExpander').getByText('Instructions')).toBeVisible();
+
+    await fillInProcessChecklist(page)
+
+    await expect(page.getByRole('heading', {name: 'Upload Technical Test Results'})).toBeVisible();
+    // Try to upload result files
+
+    // Path: one level up from current directory, then into test-data
+    const test_result_json_path = path.resolve(__dirname, 'test-data', 'ms-v1-test-result.json');
+    // Locate the file input element.
+    const fileInput = page.locator('[data-testid="stFileUploaderDropzone"] input[type="file"]');
+
+    // Ensure the file input exists and then perform the file upload.
+    await expect(fileInput).toHaveCount(1);
+    await fileInput.setInputFiles(test_result_json_path);
+
+    // Verify the file was uploaded.
+    await expect(page.getByText('File uploaded successfully')).toBeVisible();
+    await expect(page.getByTestId('stFileUploaderFileName')).toContainText('ms-v1-test-result.json');
+
+    // Click next page button
+    await page.getByRole('button', {name: 'Next →'}).click();
+
+    // Check Steps UI contains 'active'
+    boxStep4 = page.getByText('5', {exact: true});
+    await expect(boxStep4).toHaveClass(/active/);
+
+    await expect(page.getByRole('heading', {name: 'Generate Your Report'})).toBeVisible();
+
+    //Attempt to edit Workspace information
+    await page.locator('[data-testid="stCustomComponentV1"]').contentFrame().getByRole('button', {name: 'edit'}).click();
+    await page.getByRole('textbox', {name: 'Company Name'}).click();
+    await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name_edit');
+    await page.getByRole('textbox', {name: 'Application Name'}).click();
+    await page.getByRole('textbox', {name: 'Application Name'}).fill('application_name_edit');
+    await page.getByRole('textbox', {name: 'Application Description'}).click();
+    await page.getByRole('textbox', {name: 'Application Description'}).fill('application_description_edit');
+    await page.getByTestId('stBaseButton-primaryFormSubmit').click();
+    // Verify changes is updated
+    await expect(page.locator('[data-testid="stCustomComponentV1"]').contentFrame().getByText('company_name_edit')).toBeVisible();
+    await expect(page.locator('[data-testid="stCustomComponentV1"]').contentFrame().getByText('application_name_edit')).toBeVisible();
+    await expect(page.locator('[data-testid="stCustomComponentV1"]').contentFrame().getByText('application_description_edit')).toBeVisible();
+
+    // Download button hidden before clicking generate report button
+    await expect(page.getByTestId('stDownloadButton').getByTestId('stBaseButton-primary')).toBeHidden();
+
+    // Click Generate Report Button
+    await page.getByRole('button', {name: 'Generate Report'}).click();
+
+    //Verify Download PDF button visible to user for download
+    await expect(page.getByTestId('stDownloadButton').getByTestId('stBaseButton-primary')).toBeVisible({timeout: 90000});
+
+    const [download] = await Promise.all([
+        page.waitForEvent('download'),  // Wait for the download event
+        page.getByTestId('stDownloadButton').getByTestId('stBaseButton-primary').click(),
+    ]);
+
+    // Get the suggested filename and save the file to the current directory
+    const filename = download.suggestedFilename();
+    expect(filename == "summary_report.pdf")
     await page.close(); // clean up
 });

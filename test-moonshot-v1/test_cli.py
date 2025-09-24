@@ -12,12 +12,14 @@ MOON_V1_CLI_DIR = os.getenv('MOON_V1_CLI_DIR')
 
 def assert_run_benchmark_outcome(output_lines):
     output_lines = [line.replace(" ", "") for line in output_lines if line.strip()]
+    print("output_lines: [\n", "\n\t".join(output_lines), "\n]")
     assert any("File written".replace(" ", "") in line for line in output_lines)
     assert any("successfully at:".replace(" ", "") in line for line in output_lines)
     assert any("data/results/smoke-test-my-benc".replace(" ", "") in line for line in output_lines)
 
 def assert_run_red_teaming_outcome(output_lines):
     output_lines = [line.replace(" ", "") for line in output_lines if line.strip()]
+    print("output_lines: [\n", "\n\t".join(output_lines), "\n]")
     assert any("File written".replace(" ", "") in line for line in output_lines)
     assert any("successfully at:".replace(" ", "") in line for line in output_lines)
     assert any("data/results/smoke-tes".replace(" ", "") in line for line in output_lines)

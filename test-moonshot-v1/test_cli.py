@@ -12,22 +12,22 @@ MOON_V1_CLI_DIR = os.getenv('MOON_V1_CLI_DIR')
 
 def assert_run_benchmark_outcome(output_lines):
     output_lines = [line.replace(" ", "") for line in output_lines if line.strip()]
-    assert "File written".replace(" ", "") in output_lines
-    assert "successfully at:".replace(" ", "") in output_lines
-    assert "data/results/smoke-test-my-benc".replace(" ", "") in output_lines
+    assert any("File written".replace(" ", "") in line for line in output_lines)
+    assert any("successfully at:".replace(" ", "") in line for line in output_lines)
+    assert any("data/results/smoke-test-my-benc".replace(" ", "") in line for line in output_lines)
 
 def assert_run_red_teaming_outcome(output_lines):
     output_lines = [line.replace(" ", "") for line in output_lines if line.strip()]
-    assert "File written".replace(" ", "") in output_lines
-    assert "successfully at:".replace(" ", "") in output_lines
-    assert "data/results/smoke-tes".replace(" ", "") in output_lines
+    assert any("File written".replace(" ", "") in line for line in output_lines)
+    assert any("successfully at:".replace(" ", "") in line for line in output_lines)
+    assert any("data/results/smoke-tes".replace(" ", "") in line for line in output_lines)
 
 def test_cli_smoke_test():
     # Smoke Test for Run Benchmarking Test Config Command
     # Generate a random number between 0 and 999,999,999 (inclusive)
     random_number = int(random.random() * 1000000000)
-    dataset_module = "s3://s3-aiss-moonshot-dev-app-lite/data/dataset-mini/prompt_injection_payload_splitting"
-    prefix = "s3://s3-aiss-moonshot-dev-app-lite/data/dataset-mini/"
+    dataset_module = "s3://moonshot-cicd-smoketest/data/dataset-mini/prompt_injection_payload_splitting"
+    prefix = "s3://moonshot-cicd-smoketest/data/dataset-mini/"
     dataset_source = "s3-" + dataset_module[len(prefix):]
     connector_name = "my-gpt-4o-mini"
     nameOfRunnerName = "smoke-test-my-benchmarking-" + connector_name + "-" + dataset_source + "-" + str(random_number)

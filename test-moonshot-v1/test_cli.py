@@ -6,7 +6,6 @@ from util import os, copy_file, replace_yaml_content, copy_and_move_file, check_
 
 load_dotenv()  # Load environment variables from .env file
 
-OPENAI_TOKEN = os.getenv('OPENAI_TOKEN')
 MOON_V1_CLI_DIR = os.getenv('MOON_V1_CLI_DIR')
 S3_BUCKET_NAME = os.getenv('S3_BUCKET_NAME')
 
@@ -55,8 +54,7 @@ def test_cli_smoke_test():
     replace_yaml_content(yaml_file_path, updates)
 
     commands = [
-        "export OPENAI_API_KEY=" + OPENAI_TOKEN,
-        "poetry run moonshot run " + nameOfRunnerName + " " + test_config_name + " " + connector_name + ""
+        "moonshot run " + nameOfRunnerName + " " + test_config_name + " " + connector_name + ""
     ]
     # Join commands with '&&' to ensure the next runs only if the previous succeeds
     full_command = "&&".join(commands)
@@ -127,8 +125,7 @@ def test_cli_smoke_test():
     replace_yaml_content(yaml_file_path, updates)
 
     commands = [
-        "export OPENAI_API_KEY=" + OPENAI_TOKEN,
-        "poetry run moonshot run " + nameOfRunnerName + " " + test_config_name + " " + connector_name + ""
+        "moonshot run " + nameOfRunnerName + " " + test_config_name + " " + connector_name + ""
     ]
     # Join commands with '&&' to ensure the next runs only if the previous succeeds
     full_command = "&&".join(commands)
@@ -151,6 +148,7 @@ def test_cli_smoke_test():
     # Capture the output and errors
     stdout, stderr = process.communicate()
 
+    print('Stderr:', stderr)
     print('Output:', stdout)
     # Split the output into lines
     output_lines = stdout.splitlines()

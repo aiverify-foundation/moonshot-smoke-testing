@@ -173,7 +173,8 @@ To execute the integration tests:
    AWS_ACCESS_KEY_ID = ''
    AWS_SECRET_ACCESS_KEY=''
    OPENAI_TOKEN = ''
-   MOON_V1_CLI_DIR = ''# Path of Moonshot v1 repo
+   MOON_V1_CLI_DIR = '' # Path of Moonshot v1 repo
+   S3_BUCKET_NAME = '' # AWS S3 Bucket that store the dataset for smoke test
    ```
 
 4. **Run Tests**:

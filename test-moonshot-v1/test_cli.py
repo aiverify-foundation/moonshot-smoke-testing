@@ -1,18 +1,17 @@
-import pytest
-
-from util import *
 import subprocess
+
 from dotenv import load_dotenv
-import random
+from datetime import datetime
+from util import os, copy_file, replace_yaml_content, copy_and_move_file, check_result_file_exists
 
 load_dotenv()  # Load environment variables from .env file
 
 OPENAI_TOKEN = os.getenv('OPENAI_TOKEN')
 MOON_V1_CLI_DIR = os.getenv('MOON_V1_CLI_DIR')
+S3_BUCKET_NAME = os.getenv('S3_BUCKET_NAME')
 
 def assert_run_benchmark_outcome(output_lines):
     output_lines = [line.replace(" ", "") for line in output_lines if line.strip()]
-    print("output_lines: [\n", "\n\t".join(output_lines), "\n]")
     assert any("File written".replace(" ", "") in line for line in output_lines)
     assert any("successfully at:".replace(" ", "") in line for line in output_lines)
     assert any("data/results/smoke-test-my-benc".replace(" ", "") in line for line in output_lines)
@@ -25,14 +24,14 @@ def assert_run_red_teaming_outcome(output_lines):
     assert any("data/results/smoke-tes".replace(" ", "") in line for line in output_lines)
 
 def test_cli_smoke_test():
-    # Smoke Test for Run Benchmarking Test Config Command
-    # Generate a random number between 0 and 999,999,999 (inclusive)
-    random_number = int(random.random() * 1000000000)
-    dataset_module = "s3://moonshot-cicd-smoketest/data/dataset-mini/prompt_injection_payload_splitting"
-    prefix = "s3://moonshot-cicd-smoketest/data/dataset-mini/"
+    """ Smoke Test for Run Benchmarking Test Config Command"""
+    # Date Time String to give unique name to the runner
+    date_time_str = datetime.now().strftime("%Y%m%dT%H%M%S")
+    dataset_module = f"s3://{S3_BUCKET_NAME}/data/dataset-mini/prompt_injection_payload_splitting"
+    prefix = f"s3://{S3_BUCKET_NAME}/data/dataset-mini/"
     dataset_source = "s3-" + dataset_module[len(prefix):]
     connector_name = "my-gpt-4o-mini"
-    nameOfRunnerName = "smoke-test-my-benchmarking-" + connector_name + "-" + dataset_source + "-" + str(random_number)
+    nameOfRunnerName = "smoke-test-my-benchmarking-" + connector_name + "-" + dataset_source + "-" + date_time_str
     test_config_name = "qa-tests"
     metric_module = "refusal_adapter"
 
@@ -97,7 +96,7 @@ def test_cli_smoke_test():
 
     attack_module = "hallucination"
     connector_name = "my-gpt-4o-mini"
-    nameOfRunnerName = "smoke-test-test_run_" + connector_name + "-" + attack_module + "-" + str(random_number)
+    nameOfRunnerName = "smoke-test-test_run_" + connector_name + "-" + attack_module + "-" + date_time_str
     test_config_name = "qa-tests"
     metric_module = "refusal_adapter"
 

@@ -17,7 +17,6 @@ def assert_run_benchmark_outcome(output_lines):
 
 def assert_run_red_teaming_outcome(output_lines):
     output_lines = [line.replace(" ", "") for line in output_lines if line.strip()]
-    print("output_lines: [\n", "\n\t".join(output_lines), "\n]")
     assert any("File written".replace(" ", "") in line for line in output_lines)
     assert any("successfully at:".replace(" ", "") in line for line in output_lines)
     assert any("data/results/smoke-tes".replace(" ", "") in line for line in output_lines)
@@ -77,6 +76,7 @@ def test_cli_smoke_test():
     # Capture the output and errors
     stdout, stderr = process.communicate()
 
+    print('Stderr:', stderr)
     print('Output:', stdout)
     # Split the output into lines
     output_lines = stdout.splitlines()

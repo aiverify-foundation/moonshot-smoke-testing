@@ -163,7 +163,7 @@ ptyprocess==0.7.0
 pure_eval==0.2.3
 py-readability-metrics==1.4.5
 pyarrow==17.0.0
-pyasn1==0.6.1
+pyasn1==0.6.2
 pyasn1_modules==0.4.1
 pybind11==2.13.6
 pydantic==2.8.2

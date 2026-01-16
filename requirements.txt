@@ -51,7 +51,7 @@ en-core-web-lg @ https://github.com/explosion/spacy-models/releases/download/en_
 eval_type_backport==0.2.0
 executing==2.1.0
 fastapi==0.115.6
-filelock==3.16.1
+filelock==3.20.3
 filetype==1.2.0
 flair==0.14.0
 flatbuffers==24.3.25
